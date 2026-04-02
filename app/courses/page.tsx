@@ -12,14 +12,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { CoursesFullCatalogGrid, LearnAiTracksGrid } from "@/components/marketing/courses-catalog-sections"
+import { CoursesCategoryBrowse } from "@/components/marketing/courses-category-browse"
+import { CoursesFullCatalogGrid } from "@/components/marketing/courses-catalog-sections"
 import {
   addOns,
   codeLanguages,
   creativeStack,
   extraProgramTools,
-  learnAiIntro,
-  learnAiTracks,
   pricingBands,
   subjectsToPrograms,
   whatsappHref,
@@ -27,14 +26,14 @@ import {
 export const metadata: Metadata = {
   title: "Courses & programs",
   description:
-    "Intellix catalog — design, video, photo, code, and Learn AI (fundamentals, workplace AI, Cursor/Claude Code, generative creative). Creator and freelance add-ons.",
+    "Intellix by category — Learn AI, Development, Business, Finance, IT, Office Productivity, Design, Photography & Video. Plus creator add-ons and CodeCraft paths.",
 }
 
 export default function CoursesPage() {
   return (
     <PageShell
       title="Courses & programs"
-      subtitle="Same program cards as the home page — thumbnail, outcomes, and level. Learn by doing with tools we actually run in the lab (Adobe, DaVinci, CapCut mobile, Cursor, DJI, and more). No pricing on cards; see suggested GMD bands below."
+      subtitle="Browse by category below (same structure as the header Courses menu), then the full program grid. Learn by doing — tools we run in lab. No pricing on cards; see suggested GMD bands at the bottom."
     >
       <div className="flex flex-wrap gap-3">
         <Button asChild>
@@ -72,6 +71,18 @@ export default function CoursesPage() {
             Enroll
           </Link>
         </p>
+      </section>
+
+      <section className="mt-14">
+        <h2 className="font-heading text-xl font-semibold">Browse by category</h2>
+        <p className="text-muted-foreground mt-2 max-w-3xl text-sm">
+          Eight areas — Learn AI, Development, Business, Finance &amp; Accounting, IT &amp; Software, Office Productivity
+          (ChatGPT, Claude, Gemini for everyday work), Design, and Photography &amp; Video — each opens into topic cards that
+          link to the right program or intake.
+        </p>
+        <div className="mt-8">
+          <CoursesCategoryBrowse />
+        </div>
       </section>
 
       <section className="mt-14">
@@ -128,24 +139,6 @@ export default function CoursesPage() {
         </p>
         <div className="mt-8">
           <CoursesFullCatalogGrid />
-        </div>
-      </section>
-
-      <section className="mt-14 scroll-mt-24" id="learn-ai">
-        <h2 className="font-heading text-xl font-semibold">Learn AI</h2>
-        <p className="text-muted-foreground mt-2 max-w-3xl text-sm leading-relaxed">{learnAiIntro}</p>
-        <div className="mt-8">
-          <LearnAiTracksGrid />
-        </div>
-        <div className="border-border mt-10 space-y-4 rounded-xl border p-4 sm:p-5">
-          <h3 className="font-heading text-foreground text-sm font-semibold">Tools & focus by module</h3>
-          <ul className="text-muted-foreground space-y-3 text-sm">
-            {learnAiTracks.map((t) => (
-              <li key={t.id}>
-                <strong className="text-foreground">{t.title}:</strong> {t.tools}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

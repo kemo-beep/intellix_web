@@ -559,33 +559,357 @@ export const learnAiTracks: {
 }[] = [
   {
     id: "fundamentals",
-    title: "AI fundamentals",
+    title: "AI Fundamentals",
     blurb:
       "Prompt engineering, how LLMs reason, generative AI patterns, safety and limits — plus AI agents and agentic workflows (chaining tools, planners, and guardrails).",
     tools: "Hands-on with major chat models; notebooks / no-code agent builders where taught",
   },
   {
     id: "profession",
-    title: "AI for professionals",
+    title: "AI for Professionals",
     blurb:
       "ChatGPT, Claude (projects, workspace, Cowork-style collaboration), Google Gemini — docs, email, research, slides — plus AI video generation (e.g. Veo-class, Kling-class tools) for marketing and social.",
     tools: "ChatGPT, Claude, Gemini; AI video tools as licensed (Veo 3, Kling, etc.)",
   },
   {
     id: "developers",
-    title: "AI for developers",
+    title: "AI for Developers",
     blurb:
       "Ship faster with Cursor, Claude Code, and Copilot-class assistants — prompting for refactors, tests, reviews, and terminal workflows without outsourcing your judgment.",
     tools: "Cursor, Claude Code, Git + GitHub, repos you control",
   },
   {
     id: "creatives",
-    title: "AI for creatives",
+    title: "AI for Creatives",
     blurb:
       "Generative image and video for pitches and campaigns — Nano Banana, Veo 3, Kling, and similar suites from storyboard → draft asset (always with brand and rights awareness).",
     tools: "Nano Banana, Google Veo 3, Kling; optional Firefly / Midjourney-class as licensed",
   },
 ]
+
+/** Icon keys mapped in `CoursesCatalogMega` (avoid importing icons in this file). */
+export type CourseDirectoryIconId =
+  | "ai"
+  | "development"
+  | "business"
+  | "finance"
+  | "it"
+  | "office"
+  | "design"
+  | "photo"
+
+export type CourseDirectoryLink = {
+  title: string
+  description: string
+  href: string
+}
+
+export type CourseDirectoryCategory = {
+  id: string
+  iconId: CourseDirectoryIconId
+  label: string
+  sub: string
+  pageAnchor: string
+  panelTitle: string
+  panelBody: string
+  panelLink?: { href: string; label: string }
+  links: CourseDirectoryLink[]
+}
+
+/** Header Courses mega menu + `/courses` category sections — single source of truth. */
+export const courseDirectoryCategories: CourseDirectoryCategory[] = [
+  {
+    id: "learn-ai",
+    iconId: "ai",
+    label: "Learn AI",
+    sub: "LLMs · agents · tools",
+    pageAnchor: "learn-ai",
+    panelTitle: "Learn AI",
+    panelBody:
+      "From prompt engineering and agentic workflows to workplace copilots, coding agents, and generative creative suites.",
+    panelLink: { href: learnAiHref, label: "Learn AI hub on Courses" },
+    links: learnAiTracks.map((t) => ({
+      title: t.title,
+      description: t.blurb,
+      href: learnAiHref,
+    })),
+  },
+  {
+    id: "development",
+    iconId: "development",
+    label: "Development",
+    sub: "Web · data · mobile · tools",
+    pageAnchor: "catalog-development",
+    panelTitle: "Development",
+    panelBody:
+      "CodeCraft paths cover modern software delivery — web, APIs, data, mobile, and DevOps. Pair with Learn AI for Cursor / Claude Code depth.",
+    panelLink: { href: "/courses/codecraft", label: "CodeCraft program" },
+    links: [
+      {
+        title: "Web Development",
+        description: "Frontend, full-stack, and deployable web apps — HTML/CSS/JS, React or Vue, Git, hosting.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "Data Science",
+        description: "Python, SQL, APIs, and data-backed services — aligned with Backend & full-stack paths.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "Mobile Development",
+        description: "Flutter or React Native — installable Android builds and real device testing.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "Programming Languages",
+        description: "JavaScript, TypeScript, Python, SQL, Swift, Dart, Bash — see CodeCraft paths we run in lab.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "Database Design & Development",
+        description: "PostgreSQL, MongoDB, schema design, and persistence in real apps.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "Software Engineering",
+        description: "End-to-end delivery, architecture habits, testing, and maintainable codebases.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "Software Development Tools",
+        description: "Git, Docker, CI/CD, cloud consoles — plus AI assistants (Cursor, Claude Code) in Learn AI.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "No-Code Development",
+        description: "Fast delivery with Canva, Notion-style stacks, and creator workflows — Graphic Design + Creator Lab.",
+        href: "/courses/graphic-design",
+      },
+    ],
+  },
+  {
+    id: "business",
+    iconId: "business",
+    label: "Business",
+    sub: "Creator · freelance · growth",
+    pageAnchor: "catalog-business",
+    panelTitle: "Business",
+    panelBody: "Content, platforms, and client acquisition — stack with design or video programs for full service offers.",
+    panelLink: { href: "/courses#extras", label: "Business & creator programs" },
+    links: [
+      {
+        title: "Creator Lab",
+        description: "Platforms, content calendars, analytics, and strategy that pairs with design and video.",
+        href: "/courses#extras",
+      },
+      {
+        title: "Digital marketing",
+        description: "Meta Ads, Google Ads intro, GA, email — add-on track.",
+        href: "/courses#extras",
+      },
+      {
+        title: "Freelance Pro",
+        description: "Upwork, Fiverr, proposals, pricing, and first-client playbook.",
+        href: "/courses#extras",
+      },
+      {
+        title: "AI Boost for business",
+        description: "Automation with Zapier/Make, Perplexity, and AI-assisted ops — complements Learn AI.",
+        href: "/courses#extras",
+      },
+      {
+        title: "Corporate training",
+        description: "Team upskilling — design, video, dev, or AI. We scope with you.",
+        href: "/contact",
+      },
+    ],
+  },
+  {
+    id: "finance",
+    iconId: "finance",
+    label: "Finance & Accounting",
+    sub: "Tools · workflows",
+    pageAnchor: "catalog-finance",
+    panelTitle: "Finance & Accounting",
+    panelBody:
+      "Spreadsheet modeling, reporting, and finance-friendly AI assistance — we align modules with demand; ask what cohorts are open.",
+    panelLink: { href: "/contact", label: "Ask about finance tracks" },
+    links: [
+      {
+        title: "Finance & accounting essentials",
+        description: "Sheets, bookkeeping basics, and reporting workflows — optional AI assist from Learn AI (professionals).",
+        href: "/contact",
+      },
+      {
+        title: "AI for finance tasks",
+        description: "ChatGPT / Claude for summaries, variance notes, and doc prep — governance and verification emphasized.",
+        href: learnAiHref,
+      },
+    ],
+  },
+  {
+    id: "it-software",
+    iconId: "it",
+    label: "IT & Software",
+    sub: "Certs · infra · hardware",
+    pageAnchor: "catalog-it",
+    panelTitle: "IT & Software",
+    panelBody:
+      "DevOps and cloud map cleanly to CodeCraft. Certifications and hardware labs vary by intake — contact us for the current syllabus.",
+    panelLink: { href: "/contact", label: "IT & certification intake" },
+    links: [
+      {
+        title: "IT Certifications",
+        description: "Vendor-aligned prep when we run a cohort — express interest on Enroll or Contact.",
+        href: "/contact",
+      },
+      {
+        title: "Network & Security",
+        description: "SSH, networking basics, and secure deployment patterns — CodeCraft DevOps path.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "Hardware",
+        description: "Workstation setup, peripherals, and lab hardware we publish per cohort.",
+        href: "/contact",
+      },
+      {
+        title: "Operating Systems & Servers",
+        description: "Linux, containers, cloud instances — DevOps and Backend tracks.",
+        href: "/courses/codecraft",
+      },
+      {
+        title: "Other IT & Software",
+        description: "Tell us your stack — we advise which program or custom training fits.",
+        href: "/contact",
+      },
+    ],
+  },
+  {
+    id: "office",
+    iconId: "office",
+    label: "Office Productivity",
+    sub: "AI for daily work",
+    pageAnchor: "catalog-office",
+    panelTitle: "Office Productivity",
+    panelBody:
+      "Use ChatGPT, Claude, Gemini, and coding assistants where useful (e.g. Claude Code for structured docs or snippets) to draft, summarize, and run office work — documents, email, slides, and research.",
+    panelLink: { href: learnAiHref, label: "AI for professionals module" },
+    links: [
+      {
+        title: "AI for documents & email",
+        description:
+          "ChatGPT, Claude, Gemini for drafts, rewrites, meeting notes, and inbox workflows — plus Claude Code or similar where you want repeatable text or light automation.",
+        href: learnAiHref,
+      },
+      {
+        title: "Slides & reports with AI",
+        description: "From outline to deck copy and speaker notes — verify facts and brand voice.",
+        href: learnAiHref,
+      },
+      {
+        title: "Sheets & data wrangling",
+        description: "Formulas plus AI explainers — pair with Finance interest or CodeCraft for deeper data.",
+        href: learnAiHref,
+      },
+      {
+        title: "Notion, Docs & workspace",
+        description: "Templates, handoffs, and light automation — ties to Creator Lab and Freelance Pro.",
+        href: "/courses#extras",
+      },
+    ],
+  },
+  {
+    id: "design",
+    iconId: "design",
+    label: "Design",
+    sub: "Brand · print · digital",
+    pageAnchor: "catalog-design",
+    panelTitle: "Design",
+    panelBody: "Graphic Design program — Canva through InDesign with portfolio deliverables per track.",
+    panelLink: { href: "/courses/graphic-design", label: "Graphic Design program" },
+    links: [
+      {
+        title: "Canva for graphic design",
+        description: "Templates, brand kits, and fast social or print-ready packs.",
+        href: "/courses/graphic-design",
+      },
+      {
+        title: "Adobe Photoshop",
+        description: "Retouch, compositing, ads, and mockups.",
+        href: "/courses/graphic-design",
+      },
+      {
+        title: "Adobe Illustrator",
+        description: "Logos, icons, and vector systems.",
+        href: "/courses/graphic-design",
+      },
+      {
+        title: "Print & layout",
+        description: "InDesign, flyers, posters, multi-page PDFs.",
+        href: "/courses/graphic-design",
+      },
+      {
+        title: "Brand & campaigns",
+        description: "Guidelines and cross-tool campaign systems.",
+        href: "/courses/graphic-design",
+      },
+    ],
+  },
+  {
+    id: "photo-video",
+    iconId: "photo",
+    label: "Photography & Video",
+    sub: "Photo · film · motion",
+    pageAnchor: "catalog-photo-video",
+    panelTitle: "Photography & Video",
+    panelBody: "LensLab for stills, SceneCraft for production, EditPro for post and motion — plus mobile photo and video tracks.",
+    panelLink: { href: "/courses/lenslab", label: "Start with LensLab" },
+    links: [
+      {
+        title: "Photography foundations",
+        description: "Exposure, RAW, Lightroom, and a tight portfolio edit.",
+        href: "/courses/lenslab",
+      },
+      {
+        title: "Mobile photography & editing",
+        description: "Shoot and edit on your phone — Snapseed, Lightroom Mobile, Photoshop mobile.",
+        href: "/courses/lenslab",
+      },
+      {
+        title: "Portrait, product & events",
+        description: "People, commercial stills, and lifestyle sequences.",
+        href: "/courses/lenslab",
+      },
+      {
+        title: "Videography basics & mobile video",
+        description: "Composition, cinematography language, and phone-first video capture.",
+        href: "/courses/scenecraft",
+      },
+      {
+        title: "Videography on set",
+        description: "Light, audio, and multi-camera style production — SceneCraft.",
+        href: "/courses/scenecraft",
+      },
+      {
+        title: "Video & motion editing",
+        description: "CapCut to Premiere, Resolve, FCP — short, commercial, long-form, and motion graphics.",
+        href: "/courses/editpro",
+      },
+    ],
+  },
+]
+
+export function durationPillForProgramHref(href: string): string {
+  if (href === "/enroll") return "Apply"
+  if (href.startsWith("/contact")) return "Ask us"
+  if (href.includes("/codecraft")) return "Per path"
+  if (href.includes("#learn-ai")) return "Modules"
+  if (href.includes("#extras")) return "Programs"
+  if (href.includes("/graphic-design")) return "Per track"
+  if (href.includes("/editpro") || href.includes("/lenslab") || href.includes("/scenecraft")) return "Per track"
+  return "Info"
+}
 
 export const pricingBands = [
   "Shorter / basic modules: roughly GMD 3,000–8,000",
@@ -777,25 +1101,25 @@ export const topProgramTabs: {
     label: "Learn AI",
     items: [
       {
-        title: "AI fundamentals",
+        title: "AI Fundamentals",
         blurb:
           "Prompt engineering, LLMs, generative AI, and agentic AI — agents, tool use, and safe workflows before you specialize.",
         href: learnAiHref,
         badge: "Popular",
       },
       {
-        title: "AI for professionals",
+        title: "AI for Professionals",
         blurb:
           "ChatGPT, Claude (projects & Cowork-style teamwork), Gemini for work — plus AI video generation for campaigns and social.",
         href: learnAiHref,
       },
       {
-        title: "AI for developers",
+        title: "AI for Developers",
         blurb: "Cursor, Claude Code, and coding agents — refactors, tests, and shipping from your repo.",
         href: learnAiHref,
       },
       {
-        title: "AI for creatives",
+        title: "AI for Creatives",
         blurb: "Nano Banana, Veo 3, Kling, and generative image/video pipelines for concepts → assets.",
         href: learnAiHref,
       },
